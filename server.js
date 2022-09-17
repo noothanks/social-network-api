@@ -17,7 +17,7 @@ mongoose.connect(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//app.use(routes);
+app.use(routes);
 
 mongoose.connection.once("open", () => {
   app.listen(PORT, () => {
