@@ -4,16 +4,16 @@ const dateFormat = require("../utils/dateFormat");
 const replySchema = new Schema(
     {   
         //set custom id name to avoid confusion with thought
-        reactionId: {
+        replyId: {
             type: Schema.Types.ObjectId,
             default: () => new Types.ObjectId
         },
-        reactionBody: {
+        replyBody: {
             type: String,
             required: true,
             maxLength: 280
         },
-        username: {
+        writtenBy: {
             type: String,
             required: true,
         },
@@ -39,7 +39,7 @@ const thoughtSchema = new Schema(
             required: true,
             maxLength: 280
         },
-        username: {
+        writtenBy: {
             type: String,
             required: true,
         },
@@ -58,6 +58,10 @@ const thoughtSchema = new Schema(
         id: false
     }
 )
+
+thoughtSchema.virtual('reactionTotal').get(function() {
+    return this.replies.length
+})
 
 const Thought = model('Thought', thoughtSchema)
 
