@@ -1,20 +1,26 @@
 {
   "name": "social-network-api",
-  "version": "1.0.0",
   "description": "",
+  "version": "1.0.0",
   "main": "index.js",
+  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/noothanks/social-network-api.git"
+    "url": "git+https://github.com/anillag/social-network-api.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/noothanks/social-network-api/issues"
+    "url": "https://github.com/anillag/social-network-api/issues"
   },
-  "homepage": "https://github.com/noothanks/social-network-api#readme"
+  "homepage": "https://github.com/anillag/social-network-api#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongoose": "^6.5.2"
+  }
 }
