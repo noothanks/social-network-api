@@ -22,8 +22,6 @@ router.route('/:id')
 
 router.route('/:id/replies')
     .post(createReply)
-
-router.route('/:id/replies/:replyId')
     .delete(deleteReply)
-
+    
 module.exports = router

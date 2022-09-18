@@ -127,10 +127,10 @@ const thoughtController = {
     deleteReply({params}, res) {
         Thought.findOneAndUpdate(
             {
-                _id: params.id
+                _id: params.userId
             },
             {
-                $pull: {reactions: {replyId: params.replyId}}
+                $pull: {replies: {replyId: params.replyId}}
             },
             {
                 new: true,
