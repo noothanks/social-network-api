@@ -37,6 +37,7 @@ const thoughtController = {
                 res.status(404).json({message: 'No thought found with this id'})
                 return;
             }
+            res.json(dbThoughtData);
         })
         .catch(err => {
             console.log(err);
@@ -48,7 +49,7 @@ const thoughtController = {
             .then(({_id}) => {
                 return User.findOneAndUpdate(
                     {
-                        _id: params.id
+                        _id: body.userId
                     },
                     {
                         $push: {thoughts: _id}
@@ -65,11 +66,12 @@ const thoughtController = {
                 }
                 res.json(dbThoughtData);
             })
+            .catch(err => res.json(err))
     },
     updateThought({params, body}, res) {
         Thought.findOneAndUpdate(
             {
-                _id: params.thoughtId
+                _id: params.id
             }, body, {
                 new: true,
                 runValidators: true
@@ -85,7 +87,7 @@ const thoughtController = {
         .catch(err => res.json(err));
     },
     deleteThought({params}, res){
-        Thought.findOAndDelete(
+        Thought.findOneAndDelete(
             {
                 _id: params.id
             }
@@ -102,7 +104,7 @@ const thoughtController = {
     createReply({params, body}, res) {
         Thought.findOneAndUpdate(
             {
-                _id: params.thoughtId
+                _id: params.id
             },
             {
                 $push: {replies: body}
@@ -121,17 +123,17 @@ const thoughtController = {
         })
         .catch(err => res.json(err));
     },
+    //fix me!!!!
     deleteReply({params}, res) {
         Thought.findOneAndUpdate(
             {
-                _id: params.thoughtId
+                _id: params.id
             },
             {
                 $pull: {reactions: {replyId: params.replyId}}
             },
             {
                 new: true,
-                runValidators: true
             }
         )
         .then((thoughtData) => {
@@ -139,7 +141,7 @@ const thoughtController = {
               res.status(404).json({ message: "Incorrect reaction data!" });
               return;
             }
-            res.json(dbUserData);
+            res.json(thoughtData);
           })
         .catch((err) => res.json(err));
     }

@@ -32,12 +32,16 @@ const userSchema = new Schema(
         friends: [
             //tells mongoose to expect a User object
             {
-                type: Schema.Type.ObjectId,
+                type: Schema.Types.ObjectId,
                 ref: 'User'
             }
         ],
         //allows for the creation of virtual fields in our documents
         //allows for the use of our helper functions
+
+
+    },
+    {
         toJSON: {
             virtuals: true,
             getters: true
@@ -45,6 +49,7 @@ const userSchema = new Schema(
         //prevents duplicate ids
         id: false
     }
+
 );
 
 //virtuals add virtual properties to document that are not stored in the database
